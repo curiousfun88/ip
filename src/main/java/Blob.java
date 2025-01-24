@@ -103,6 +103,18 @@ public class Blob {
                     System.out.println("        " + event);
                     System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println("    ____________________________________________________________");
+                } else if (command.startsWith("delete")) {
+                    if (command.split(" ").length < 2) {
+                        throw new BlobException("WAIT!!! Please tell Blob which task to delete!.");
+                    }
+                    int index = Integer.parseInt(command.split(" ")[1]);
+                    Task selected = tasks.get(index - 1);
+                    tasks.remove(selected);
+                    System.out.println("    ____________________________________________________________");
+                    System.out.println("    Blob has removed the task below! Hooray!! Lesser tasks for Blob!");
+                    System.out.println("        " + selected);
+                    System.out.println("    Now you have " + tasks.size() + " tasks left to do!! Faster do faster Blob can sleep!!!");
+                    System.out.println("    ____________________________________________________________");
                 } else {
                     System.out.println("    ____________________________________________________________");
                     System.out.println("    Please key in a valid task! Blob doesn't know what you want!!");

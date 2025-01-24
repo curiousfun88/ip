@@ -45,6 +45,42 @@ public class Blob {
                 System.out.println("    OK, I've marked this task as not done yet:");
                 System.out.println("        " + selected);
                 System.out.println("    ____________________________________________________________");
+            } else if (command.startsWith("todo")) {
+                Task todo = new Todo(command.substring(5));
+                tasks.add(todo);
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:");
+                System.out.println("        " + todo);
+                System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+            } else if (command.startsWith("deadline")) {
+                int startIndex = 9;
+                int endIndex = command.indexOf("/");
+                int byIndex = endIndex + 4;
+                String description = command.substring(startIndex, endIndex);
+                String due = command.substring(byIndex);
+                Task deadline = new Deadline(description, due);
+                tasks.add(deadline);
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:");
+                System.out.println("        " + deadline);
+                System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+            } else if (command.startsWith("event")) {
+                int startIndex = 6;
+                int fromIndex = command.indexOf("/from");
+                String description = command.substring(startIndex, fromIndex);
+                int toIndex = command.indexOf("/to");
+                String startTime = command.substring(fromIndex + 6, toIndex);
+                String endTime = command.substring(toIndex + 4);
+                Task event = new Event(description, startTime, endTime);
+                tasks.add(event);
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:");
+                System.out.println("        " + event);
+                System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println("    ____________________________________________________________");
+
             } else {
                 System.out.println("    ____________________________________________________________");
                 System.out.println("    added: " + command);
@@ -80,5 +116,46 @@ class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+}
+
+class Todo extends Task {
+    public Todo(String description) {
+        super(description);
+    }
+
+    @Override
+    public String toString() {
+        return "[T]" + super.toString();
+    }
+}
+
+class Deadline extends Task {
+    protected String by;
+
+    public Deadline(String description, String by) {
+        super(description);
+        this.by = by;
+    }
+
+    @Override
+    public String toString() {
+        return "[D]" + super.toString() + " (by: " + by + ")";
+    }
+}
+
+class Event extends Task {
+    protected String from;
+    protected String to;
+
+    public Event(String description, String from, String to) {
+        super(description);
+        this.from = from;
+        this.to = to;
+    }
+
+    @Override
+    public String toString() {
+        return "[E]" + super.toString() + " (from: " + from + "to: " + to + ")";
     }
 }

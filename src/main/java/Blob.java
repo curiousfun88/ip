@@ -1,6 +1,13 @@
+/**
+ * This class represents Blob, the friendly chatbot
+ */
+
 import java.util.*;
 
 public class Blob {
+    /**
+     * Implementation of Blob chatbot
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

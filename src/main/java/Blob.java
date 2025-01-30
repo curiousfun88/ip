@@ -25,6 +25,8 @@ public class Blob {
                     break;
                 } else if (command.equals("list")) {
                     tasks.listTasks();
+                } else if (command.startsWith("deadlineslist")) {
+                    tasks.listSameDeadlineTasks(command);
                 } else if (command.startsWith("mark")) {
                     tasks.markTask(command);
                     Storage.saveTasks(tasks);

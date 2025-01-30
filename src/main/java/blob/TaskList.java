@@ -189,4 +189,16 @@ public class TaskList implements Iterable<Task> {
             System.out.println("Invalid input format! Please use the format: deadlineslist yyyy/MM/dd");
         }
     }
+
+    public boolean isEmpty() {
+        return tasks.isEmpty();
+    }
+
+    public int size() {
+        return tasks.size();
+    }
+
+    public Task get(int index) {
+        return tasks.get(index);
+    }
 }

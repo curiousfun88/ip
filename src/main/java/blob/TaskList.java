@@ -1,30 +1,32 @@
+package blob;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.Iterator;
 
 /**
- * This class represents the TaskList class that houses all task operations.
+ * This class represents the blob.TaskList class that houses all task operations.
  */
 public class TaskList implements Iterable<Task> {
     private final ArrayList<Task> tasks;
 
     /**
-     * Constructor for TaskList class.
+     * Constructor for blob.TaskList class.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * This method adds the task to the TaskList.
+     * This method adds the task to the blob.TaskList.
      */
     public void add(Task task) {
         tasks.add(task);
     }
 
     /**
-     * This method lists the existing tasks in the TaskList.
+     * This method lists the existing tasks in the blob.TaskList.
      */
     public void listTasks() {
         System.out.println("    ____________________________________________________________");
@@ -42,7 +44,7 @@ public class TaskList implements Iterable<Task> {
      */
     public void markTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
-            throw new BlobException("WAIT!!! Please tell Blob which task to mark as done!.");
+            throw new BlobException("WAIT!!! Please tell blob.Blob which task to mark as done!.");
         }
         int index = Integer.parseInt(command.split(" ")[1]);
         Task selected = tasks.get(index - 1);
@@ -58,7 +60,7 @@ public class TaskList implements Iterable<Task> {
      */
     public void unmarkTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
-            throw new BlobException("WAIT!!! Please tell Blob which task to mark as undone!.");
+            throw new BlobException("WAIT!!! Please tell blob.Blob which task to mark as undone!.");
         }
         int index = Integer.parseInt(command.split(" ")[1]);
         Task selected = tasks.get(index - 1);
@@ -70,7 +72,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * This method adds the Todo task to the TaskList.
+     * This method adds the blob.Todo task to the blob.TaskList.
      */
     public void addTodoTask(String command) throws BlobException {
         String description = command.substring(4).trim();
@@ -87,14 +89,14 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * This method adds the Deadline task to the TaskList.
+     * This method adds the blob.Deadline task to the blob.TaskList.
      */
     public void addDeadlineTask(String command) throws BlobException {
         int startIndex = 8;
         int endIndex = command.indexOf("/");
         int byIndex = endIndex + 4;
         if (endIndex == -1 || command.length() <= byIndex) {
-            throw new BlobException("HOLD ON! Blob doesn't know when your task is due! Please key in!!");
+            throw new BlobException("HOLD ON! blob.Blob doesn't know when your task is due! Please key in!!");
         }
         String description = command.substring(startIndex, endIndex).trim();
         String due = command.substring(byIndex).trim();
@@ -108,23 +110,23 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * This method adds the Event task to the TaskList.
+     * This method adds the blob.Event task to the blob.TaskList.
      */
     public void addEventTask(String command) throws BlobException {
         int startIndex = 5;
         int fromIndex = command.indexOf("/from");
         if (fromIndex == -1) {
-            throw new BlobException("Please ensure you enter the required event details before telling Blob!!");
+            throw new BlobException("Please ensure you enter the required event details before telling blob.Blob!!");
         }
         String description = command.substring(startIndex, fromIndex - 1).trim();
         int toIndex = command.indexOf("/to");
         if (toIndex == -1) {
-            throw new BlobException("Please ensure you enter the required event details before telling Blob!!");
+            throw new BlobException("Please ensure you enter the required event details before telling blob.Blob!!");
         }
         String startTime = command.substring(fromIndex + 5, toIndex).trim();
         String endTime = command.substring(toIndex + 3).trim();
         if (description.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
-            throw new BlobException("Please ensure all event details are entered! Blob can't read your mind!!");
+            throw new BlobException("Please ensure all event details are entered! blob.Blob can't read your mind!!");
         }
         Task event = new Event(description, startTime, endTime);
         tasks.add(event);
@@ -136,24 +138,24 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * This method deletes the task from the TaskList.
+     * This method deletes the task from the blob.TaskList.
      */
     public void deleteTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
-            throw new BlobException("WAIT!!! Please tell Blob which task to delete!.");
+            throw new BlobException("WAIT!!! Please tell blob.Blob which task to delete!.");
         }
         int index = Integer.parseInt(command.split(" ")[1]);
         Task selected = tasks.get(index - 1);
         tasks.remove(selected);
         System.out.println("    ____________________________________________________________");
-        System.out.println("    Blob has removed the task below! Hooray!! Lesser tasks for Blob!");
+        System.out.println("    blob.Blob has removed the task below! Hooray!! Lesser tasks for blob.Blob!");
         System.out.println("        " + selected);
-        System.out.println("    Now you have " + tasks.size() + " tasks left to do!! Faster do faster Blob can sleep!!!");
+        System.out.println("    Now you have " + tasks.size() + " tasks left to do!! Faster do faster blob.Blob can sleep!!!");
         System.out.println("    ____________________________________________________________");
     }
 
     /**
-     * This method ensures the TaskList is iterable.
+     * This method ensures the blob.TaskList is iterable.
      */
     @Override
     public Iterator<Task> iterator() {
@@ -175,7 +177,7 @@ public class TaskList implements Iterable<Task> {
                 List<Deadline> deadlines = Deadline.getDeadlinesOnSameDay(targetDate, tasks);
 
                 System.out.println("    ____________________________________________________________");
-                System.out.println("    Here's what's due on " + targetDate + "! Please thank Blob for reminding you!!");
+                System.out.println("    Here's what's due on " + targetDate + "! Please thank blob.Blob for reminding you!!");
                 for (Deadline deadline : deadlines) {
                     System.out.println("    " + deadline);
                 }

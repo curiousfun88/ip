@@ -1,3 +1,5 @@
+package blob;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -5,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents the Deadline task type.
+ * This class represents the blob.Deadline task type.
  */
 class Deadline extends Task {
     private final LocalDateTime deadline;  // Store deadline as LocalDateTime
@@ -13,7 +15,7 @@ class Deadline extends Task {
     private static final DateTimeFormatter RUN_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm");
 
     /**
-     * Constructor for Deadline class.
+     * Constructor for blob.Deadline class.
      */
     public Deadline(String description, String by) {
         super(description);
@@ -45,7 +47,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method converts the Deadline task from input form to data form (for storage).
+     * This method converts the blob.Deadline task from input form to data form (for storage).
      */
     @Override
     public String serialise() {

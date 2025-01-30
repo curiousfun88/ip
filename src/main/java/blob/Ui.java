@@ -1,3 +1,5 @@
+package blob;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -34,7 +36,7 @@ public class Ui {
 
     public void invalidCommandMessage() {
         System.out.println("    ____________________________________________________________");
-        System.out.println("    Please key in a valid task! Blob doesn't know what you want!!");
+        System.out.println("    Please key in a valid task! blob.Blob doesn't know what you want!!");
         System.out.println("    ____________________________________________________________");
     }
 

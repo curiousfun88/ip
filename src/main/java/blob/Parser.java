@@ -1,3 +1,5 @@
+package blob;
+
 public class Parser {
     private final TaskList tasks;
     private final Storage storage;
@@ -41,7 +43,7 @@ public class Parser {
         } catch (NumberFormatException e) {
             ui.error("Please specify which task!");
         } catch (Exception e) {
-            ui.error("Please input again for Blob!");
+            ui.error("Please input again for blob.Blob!");
         }
     }
 }

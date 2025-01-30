@@ -1,5 +1,7 @@
+package blob;
+
 /**
- * This class represents the Task superclass.
+ * This class represents the blob.Task superclass.
  */
 public class Task {
     protected String description;

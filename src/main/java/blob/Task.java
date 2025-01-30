@@ -73,4 +73,8 @@ public class Task {
                 throw new IllegalArgumentException("Invalid task type: " + type);
         }
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }

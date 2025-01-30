@@ -1,11 +1,11 @@
 package blob;
 
 /**
- * This class represents the blob.Todo task type.
+ * This class represents the Todo task type.
  */
 class Todo extends Task {
     /**
-     * Constructor for blob.Todo class.
+     * Constructor for Todo class.
      */
     public Todo(String description) {
         super(description);
@@ -26,5 +26,4 @@ class Todo extends Task {
     public String serialise() {
         return "T | " + (isDone ? "1" : "0") + " | " + description;
     }
-
 }

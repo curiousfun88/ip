@@ -16,4 +16,13 @@ class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * This method converts the Todo task from input form to data form.
+     */
+    @Override
+    public String serialise() {
+        return "T | " + (isDone ? "1" : "0") + " | " + description;
+    }
+
 }

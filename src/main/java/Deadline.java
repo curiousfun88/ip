@@ -19,4 +19,12 @@ class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * This method converts the Deadline task from input form to data form.
+     */
+    @Override
+    public String serialise() {
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
+    }
 }

@@ -1,12 +1,29 @@
 import java.util.*;
+import java.util.Iterator;
 
-public class TaskList {
+/**
+ * This class represents the TaskList class that houses all task operations.
+ */
+public class TaskList implements Iterable<Task> {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Constructor for TaskList class.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * This method adds the task to the TaskList.
+     */
+    public void add(Task task) {
+        tasks.add(task);
+    }
+
+    /**
+     * This method lists the existing tasks in the TaskList.
+     */
     public void listTasks() {
         System.out.println("    ____________________________________________________________");
         System.out.println("    Here are the tasks in your list:");
@@ -18,6 +35,9 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * This method marks the task as done.
+     */
     public void markTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
             throw new BlobException("WAIT!!! Please tell Blob which task to mark as done!.");
@@ -31,6 +51,9 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * This method unmarks the tasks as undone.
+     */
     public void unmarkTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
             throw new BlobException("WAIT!!! Please tell Blob which task to mark as undone!.");
@@ -44,6 +67,9 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * This method adds the Todo task to the TaskList.
+     */
     public void addTodoTask(String command) throws BlobException {
         String description = command.substring(4).trim();
         if (description.isEmpty()) {
@@ -58,6 +84,9 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * This method adds the Deadline task to the TaskList.
+     */
     public void addDeadlineTask(String command) throws BlobException {
         int startIndex = 8;
         int endIndex = command.indexOf("/");
@@ -76,6 +105,9 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * This method adds the Event task to the TaskList.
+     */
     public void addEventTask(String command) throws BlobException {
         int startIndex = 5;
         int fromIndex = command.indexOf("/from");
@@ -101,6 +133,9 @@ public class TaskList {
         System.out.println("    ____________________________________________________________");
     }
 
+    /**
+     * This method deletes the task from the TaskList.
+     */
     public void deleteTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
             throw new BlobException("WAIT!!! Please tell Blob which task to delete!.");
@@ -113,5 +148,13 @@ public class TaskList {
         System.out.println("        " + selected);
         System.out.println("    Now you have " + tasks.size() + " tasks left to do!! Faster do faster Blob can sleep!!!");
         System.out.println("    ____________________________________________________________");
+    }
+
+    /**
+     * This method ensures the TaskList is iterable.
+     */
+    @Override
+    public Iterator<Task> iterator() {
+        return tasks.iterator();
     }
 }

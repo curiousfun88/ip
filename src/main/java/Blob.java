@@ -2,7 +2,7 @@
  * This class represents Blob, the friendly chatbot
  */
 
-import java.util.*;
+ import java.util.*;
 
 public class Blob {
     /**
@@ -13,7 +13,7 @@ public class Blob {
 
         helloMessage();
 
-        TaskList tasks = new TaskList();
+        TaskList tasks = Storage.loadTasks();
 
         while (true) {
 
@@ -27,16 +27,22 @@ public class Blob {
                     tasks.listTasks();
                 } else if (command.startsWith("mark")) {
                     tasks.markTask(command);
+                    Storage.saveTasks(tasks);
                 } else if (command.startsWith("unmark")) {
                     tasks.unmarkTask(command);
+                    Storage.saveTasks(tasks);
                 } else if (command.startsWith("todo")) {
                     tasks.addTodoTask(command);
+                    Storage.saveTasks(tasks);
                 } else if (command.startsWith("deadline")) {
                     tasks.addDeadlineTask(command);
+                    Storage.saveTasks(tasks);
                 } else if (command.startsWith("event")) {
                     tasks.addEventTask(command);
+                    Storage.saveTasks(tasks);
                 } else if (command.startsWith("delete")) {
                     tasks.deleteTask(command);
+                    Storage.saveTasks(tasks);
                 } else {
                     System.out.println("    ____________________________________________________________");
                     System.out.println("    Please key in a valid task! Blob doesn't know what you want!!");

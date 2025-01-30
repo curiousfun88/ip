@@ -5,14 +5,21 @@ import java.util.*;
  * This class represents the Storage class for storing data.
  */
 public class Storage {
-    private static final String DIRECTORY_PATH = "data"; // Folder to store the file
-    private static final String FILE_PATH = DIRECTORY_PATH + File.separator + "blob.txt"; // Path to the file
+    private final String filePath;
+    private final String directoryPath;
 
+    /**
+     * Constructor for Storage.
+     */
+    public Storage(String filePath) {
+        this.filePath = filePath;
+        this.directoryPath = new File(filePath).getParent(); // Extracts directory path
+    }
     /**
      * This method saves the existing tasks to the TaskList.
      */
-    public static void saveTasks(TaskList tasks) {
-        File directory = new File(DIRECTORY_PATH);
+    public void saveTasks(TaskList tasks) {
+        File directory = new File(directoryPath);
 
         //check if folder exists
         if (!directory.exists()) {
@@ -20,7 +27,7 @@ public class Storage {
         }
 
         //if file does not exist, create new file
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -29,7 +36,7 @@ public class Storage {
             }
         }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Task task : tasks) {
                 writer.println(task.serialise());
             }
@@ -41,9 +48,9 @@ public class Storage {
     /**
      * This method loads existing tasks in the TaskList.
      */
-    public static TaskList loadTasks() {
+    public TaskList loadTasks() {
         TaskList tasks = new TaskList();
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
 
         //check if file exists
         if (!file.exists()) {

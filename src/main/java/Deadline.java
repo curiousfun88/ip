@@ -9,6 +9,8 @@ import java.util.List;
  */
 class Deadline extends Task {
     private final LocalDateTime deadline;  // Store deadline as LocalDateTime
+    private static final DateTimeFormatter STORAGE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    private static final DateTimeFormatter RUN_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm");
 
     /**
      * Constructor for Deadline class.
@@ -21,9 +23,16 @@ class Deadline extends Task {
     /**
      * This method parses the date string to LocalDateTime.
      */
-    private LocalDateTime parseDateTime(String by) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/M/d HHmm");  // input format: yyyy/mm/dd HHmm (24h format)
-        return LocalDateTime.parse(by, formatter);
+    public static LocalDateTime parseDateTime(String by) {
+        try {
+            return LocalDateTime.parse(by, STORAGE_FORMAT);
+        } catch (Exception e) {
+            try {
+                return LocalDateTime.parse(by, RUN_FORMAT);
+            } catch (Exception ex) {
+                throw new IllegalArgumentException("Invalid date format!");
+            }
+        }
     }
 
     /**

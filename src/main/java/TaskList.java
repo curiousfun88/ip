@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.Iterator;
 
@@ -156,5 +158,33 @@ public class TaskList implements Iterable<Task> {
     @Override
     public Iterator<Task> iterator() {
         return tasks.iterator();
+    }
+
+    /**
+     * This method displays the list of tasks with the same deadline.
+     */
+    public void listSameDeadlineTasks(String command) {
+        String[] components = command.split(" ", 2);
+        if (components.length > 1) {
+            String dateString = components[1];
+
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
+            try {
+                LocalDate targetDate = LocalDate.parse(dateString, dateFormatter);
+                List<Deadline> deadlines = Deadline.getDeadlinesOnSameDay(targetDate, tasks);
+
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Here's what's due on " + targetDate + "! Please thank Blob for reminding you!!");
+                for (Deadline deadline : deadlines) {
+                    System.out.println("    " + deadline);
+                }
+                System.out.println("    ____________________________________________________________");
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please use yyyy/MM/dd.");
+            }
+        } else {
+            System.out.println("Invalid input format! Please use the format: deadlineslist yyyy/MM/dd");
+        }
     }
 }

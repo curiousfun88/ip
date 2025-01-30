@@ -1,4 +1,3 @@
-
 /**
  * This class represents the Task superclass.
  */

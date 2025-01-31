@@ -163,7 +163,7 @@ public class TaskList implements Iterable<Task> {
      */
     public void deleteTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
-            throw new BlobException("WAIT!!! Please tell Blob which task to delete!.");
+            throw new BlobException("WAIT!!! Please tell Blob which task to delete!!");
         }
         int index = Integer.parseInt(command.split(" ")[1]);
         Task selected = tasks.get(index - 1);
@@ -173,6 +173,40 @@ public class TaskList implements Iterable<Task> {
         System.out.println("        " + selected);
         System.out.println("    Now you have " + tasks.size() + " tasks left to do!! Faster do faster Blob can sleep!!!");
         System.out.println("    ____________________________________________________________");
+    }
+
+    /**
+     * This method finds all tasks with the keyword from the TaskList.
+     *
+     * @param command which contains the keyword.
+     */
+    public void findTask(String command) throws BlobException {
+        if (command.split(" ").length < 2) {
+            throw new BlobException("WAIT!!! No keyword! How do you expect Blob to find?!");
+        }
+        String keyword = command.split(" ")[1];
+        TaskList result = new TaskList();
+
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                result.add(task);
+            }
+        }
+
+        if (result.isEmpty()) {
+            System.out.println("    ____________________________________________________________");
+            System.out.println("    Blob cannot find any matching tasks!!");
+            System.out.println("    ____________________________________________________________");
+        } else {
+            System.out.println("    ____________________________________________________________");
+            System.out.println("    Blob has kindly collated all tasks with the keyword " + keyword + "! No need thank Blob!!");
+            for (int i = 0; i < result.size(); i++) {
+                int index = i + 1;
+                Task content = result.get(i);
+                System.out.println("    " + index + ". " + content);
+            }
+            System.out.println("    ____________________________________________________________");
+        }
     }
 
     /**

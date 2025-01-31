@@ -1,7 +1,7 @@
 package blob;
 
 /**
- * This class represents the blob.Task superclass.
+ * This class represents the Task superclass.
  */
 public class Task {
     protected String description;
@@ -9,6 +9,8 @@ public class Task {
 
     /**
      * Constructor for task class.
+     *
+     * @param description Task description.
      */
     public Task(String description) {
         this.description = description;
@@ -38,17 +40,30 @@ public class Task {
 
     /**
      * This method represents task details in String form that can be printed.
+     *
+     * @return Task in String format.
      */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
-    public String serialise() {
+    /**
+     * This method converts Task from input to storage form.
+     *
+     * @return Task in storage format.
+     */
+    public String serialize() {
         return "";
     }
 
-    public static Task deserialise(String data) {
+    /**
+     * This method converts Task from storage to input form.
+     *
+     * @param data specific storage data.
+     * @return Task from the stored format.
+     */
+    public static Task deserialize(String data) {
         String[] components = data.split(" \\| ");
         String type = components[0];
         boolean isDone = components[1].equals("1");
@@ -74,6 +89,11 @@ public class Task {
         }
     }
 
+    /**
+     * This method returns the task description.
+     *
+     * @return Task description.
+     */
     public String getDescription() {
         return this.description;
     }

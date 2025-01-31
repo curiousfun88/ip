@@ -17,10 +17,10 @@ public class TodoTest {
     @Test
     public void testSerialise() {
         Todo todo = new Todo("Buy broccoli");
-        assertEquals("T | 0 | Buy broccoli", todo.serialise(), "serialise() should correctly format an unmarked task.");
+        assertEquals("T | 0 | Buy broccoli", todo.serialize(), "serialise() should correctly format an unmarked task.");
 
         todo.markAsDone();
-        assertEquals("T | 1 | Buy broccoli", todo.serialise(), "serialise() should correctly format a marked task.");
+        assertEquals("T | 1 | Buy broccoli", todo.serialize(), "serialise() should correctly format a marked task.");
     }
 }
 

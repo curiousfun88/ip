@@ -1,7 +1,7 @@
 package blob;
 
 /**
- * This class represents blob.Blob, the friendly chatbot
+ * This class represents Blob, the friendly chatbot
  */
 
 public class Blob {
@@ -9,6 +9,11 @@ public class Blob {
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a Blob instance with the specified file path for task storage.
+     *
+     * @param filePath The path to the storage file where tasks are saved and loaded.
+     */
     public Blob(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +25,10 @@ public class Blob {
         }
     }
 
+    /**
+     * Starts the Blob application, handling user commands in a loop
+     * until the "bye" command is entered.
+     */
     public void run() {
         ui.helloMessage();
 
@@ -35,6 +44,12 @@ public class Blob {
         }
     }
 
+    /**
+     * The main entry point for the Blob application.
+     * Initialises and starts the program.
+     *
+     * @param args Command-line arguments
+     */
     public static void main(String[] args) {
         new Blob("data/blob.txt").run();
     }

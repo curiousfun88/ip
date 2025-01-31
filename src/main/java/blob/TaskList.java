@@ -20,6 +20,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method adds the task to the TaskList.
+     *
+     * @param task the Task to be added.
      */
     public void add(Task task) {
         tasks.add(task);
@@ -41,6 +43,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method marks the task as done.
+     *
+     * @param command the input that houses the task index to be marked.
      */
     public void markTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -57,6 +61,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method unmarks the tasks as undone.
+     *
+     * @param command the input that houses the task index to be unmarked.
      */
     public void unmarkTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -73,6 +79,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method adds the Todo task to the TaskList.
+     *
+     * @param command the input that houses the Todo Task to be added.
      */
     public void addTodoTask(String command) throws BlobException {
         String description = command.substring(4).trim();
@@ -90,6 +98,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method adds the Deadline task to the TaskList.
+     *
+     * @param command the input that houses the Deadline Task to be added.
      */
     public void addDeadlineTask(String command) throws BlobException {
         int startIndex = 8;
@@ -111,6 +121,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method adds the Event task to the TaskList.
+     *
+     * @param command the input that houses the Event Task to be added.
      */
     public void addEventTask(String command) throws BlobException {
         int startIndex = 5;
@@ -139,6 +151,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method deletes the task from the TaskList.
+     *
+     * @param command the input that houses the task index to be deleted.
      */
     public void deleteTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -164,6 +178,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method displays the list of tasks with the same deadline.
+     *
+     * @param command the input that houses the specific date to list the same day deadlines.
      */
     public void listSameDeadlineTasks(String command) {
         String[] components = command.split(" ", 2);
@@ -190,14 +206,25 @@ public class TaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * This method checks whether the TaskList is empty.
+     */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
 
+    /**
+     * This method returns the number of tasks in the TaskList.
+     */
     public int size() {
         return tasks.size();
     }
 
+    /**
+     * This method returns the specific task at index.
+     *
+     * @param index specific task index.
+     */
     public Task get(int index) {
         return tasks.get(index);
     }

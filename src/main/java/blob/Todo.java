@@ -6,6 +6,8 @@ package blob;
 class Todo extends Task {
     /**
      * Constructor for Todo class.
+     *
+     * @param description Todo Task description.
      */
     public Todo(String description) {
         super(description);
@@ -20,7 +22,7 @@ class Todo extends Task {
     }
 
     /**
-     * This method converts the blob.Todo task from input form to data form.
+     * This method converts the Todo task from input form to data form.
      */
     @Override
     public String serialise() {

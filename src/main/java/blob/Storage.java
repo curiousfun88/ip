@@ -4,21 +4,26 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class represents the blob.Storage class for storing data.
+ * This class represents the Storage class for storing data.
  */
 public class Storage {
     private final String filePath;
     private final String directoryPath;
 
     /**
-     * Constructor for blob.Storage.
+     * Constructor for Storage.
+     *
+     * @param filePath File Path to the file involved.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.directoryPath = new File(filePath).getParent(); // Extracts directory path
     }
+
     /**
-     * This method saves the existing tasks to the blob.TaskList.
+     * This method saves the existing tasks to the TaskList.
+     *
+     * @param tasks the TaskList involved
      */
     public void saveTasks(TaskList tasks) {
         File directory = new File(directoryPath);
@@ -48,7 +53,7 @@ public class Storage {
     }
 
     /**
-     * This method loads existing tasks in the blob.TaskList.
+     * This method loads existing tasks in the TaskList.
      */
     public TaskList loadTasks() {
         TaskList tasks = new TaskList();

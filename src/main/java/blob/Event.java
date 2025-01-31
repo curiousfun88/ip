@@ -1,14 +1,18 @@
 package blob;
 
 /**
- * This class represents the blob.Event task type.
+ * This class represents the Event task type.
  */
 class Event extends Task {
     protected String from;
     protected String to;
 
     /**
-     * Constructor for blob.Event class.
+     * Constructor for Event class.
+     *
+     * @param description Event description
+     * @param from Event start time
+     * @param to Event end time
      */
     public Event(String description, String from, String to) {
         super(description);
@@ -25,7 +29,7 @@ class Event extends Task {
     }
 
     /**
-     * This method convert the blob.Event task from input form to data form.
+     * This method convert the Event task from input form to data form.
      */
     @Override
     public String serialise() {

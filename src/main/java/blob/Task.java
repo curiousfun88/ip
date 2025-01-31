@@ -70,22 +70,22 @@ public class Task {
         String description = components[2];
 
         switch (type) {
-            case "T":
-                Todo todo = new Todo(description);
-                if (isDone) todo.markAsDone();
-                return todo;
-            case "D":
-                String by = components[3];
-                Deadline deadline = new Deadline(description, by);
-                if (isDone) deadline.markAsDone();
-                return deadline;
-            case "E":
-                String[] times = components[3].split(" to ");
-                Event event = new Event(description, times[0], times[1]);
-                if (isDone) event.markAsDone();
-                return event;
-            default:
-                throw new IllegalArgumentException("Invalid task type: " + type);
+        case "T":
+            Todo todo = new Todo(description);
+            if (isDone) todo.markAsDone();
+            return todo;
+        case "D":
+            String by = components[3];
+            Deadline deadline = new Deadline(description, by);
+            if (isDone) deadline.markAsDone();
+            return deadline;
+        case "E":
+            String[] times = components[3].split(" to ");
+            Event event = new Event(description, times[0], times[1]);
+            if (isDone) event.markAsDone();
+            return event;
+        default:
+            throw new IllegalArgumentException("Invalid task type: " + type);
         }
     }
 

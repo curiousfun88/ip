@@ -45,6 +45,7 @@ public class TaskList implements Iterable<Task> {
      * This method marks the task as done.
      *
      * @param command the input that houses the task index to be marked.
+     * @throws BlobException if input does not match task format.
      */
     public void markTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -63,6 +64,7 @@ public class TaskList implements Iterable<Task> {
      * This method unmarks the tasks as undone.
      *
      * @param command the input that houses the task index to be unmarked.
+     * @throws BlobException if input does not match task format.
      */
     public void unmarkTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -81,6 +83,7 @@ public class TaskList implements Iterable<Task> {
      * This method adds the Todo task to the TaskList.
      *
      * @param command the input that houses the Todo Task to be added.
+     * @throws BlobException if input does not match task format.
      */
     public void addTodoTask(String command) throws BlobException {
         String description = command.substring(4).trim();
@@ -100,6 +103,7 @@ public class TaskList implements Iterable<Task> {
      * This method adds the Deadline task to the TaskList.
      *
      * @param command the input that houses the Deadline Task to be added.
+     * @throws BlobException if input does not match task format.
      */
     public void addDeadlineTask(String command) throws BlobException {
         int startIndex = 8;
@@ -123,6 +127,7 @@ public class TaskList implements Iterable<Task> {
      * This method adds the Event task to the TaskList.
      *
      * @param command the input that houses the Event Task to be added.
+     * @throws BlobException if input does not match task format.
      */
     public void addEventTask(String command) throws BlobException {
         int startIndex = 5;
@@ -153,6 +158,7 @@ public class TaskList implements Iterable<Task> {
      * This method deletes the task from the TaskList.
      *
      * @param command the input that houses the task index to be deleted.
+     * @throws BlobException if input does not match task format.
      */
     public void deleteTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -170,6 +176,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method ensures the TaskList is iterable.
+     *
+     * @return iterator for the TaskList.
      */
     @Override
     public Iterator<Task> iterator() {
@@ -208,6 +216,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method checks whether the TaskList is empty.
+     *
+     * @return boolean whether the TaskList is empty.
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
@@ -215,6 +225,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * This method returns the number of tasks in the TaskList.
+     *
+     * @return size of TaskList.
      */
     public int size() {
         return tasks.size();
@@ -224,6 +236,7 @@ public class TaskList implements Iterable<Task> {
      * This method returns the specific task at index.
      *
      * @param index specific task index.
+     * @return the Task at the corresponding index.
      */
     public Task get(int index) {
         return tasks.get(index);

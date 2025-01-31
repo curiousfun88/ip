@@ -15,6 +15,8 @@ class Todo extends Task {
 
     /**
      * This method represents todo details in String form that can be printed.
+     *
+     * @return Todo task in String format.
      */
     @Override
     public String toString() {
@@ -23,9 +25,11 @@ class Todo extends Task {
 
     /**
      * This method converts the Todo task from input form to data form.
+     *
+     * @return Todo task in storage format.
      */
     @Override
-    public String serialise() {
+    public String serialize() {
         return "T | " + (isDone ? "1" : "0") + " | " + description;
     }
 }

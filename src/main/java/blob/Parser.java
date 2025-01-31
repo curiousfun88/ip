@@ -11,9 +11,9 @@ public class Parser {
     /**
      * Constructor for Parser class.
      *
-     * @param tasks the TaskList involved
-     * @param storage the Storage involved
-     * @param ui the UI involved
+     * @param tasks the TaskList involved.
+     * @param storage the Storage involved.
+     * @param ui the UI involved.
      */
     public Parser(TaskList tasks, Storage storage, Ui ui) {
         this.tasks = tasks;
@@ -22,9 +22,10 @@ public class Parser {
     }
 
     /**
-     * This method processes the commands
+     * This method processes the commands.
      *
-     * @param command input command
+     * @param command input command.
+     * @throws NumberFormatException if input is not a number.
      */
     public void processCommand(String command) {
         try {

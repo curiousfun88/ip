@@ -37,6 +37,8 @@ public class Ui {
 
     /**
      * This method reads the user input.
+     *
+     * @return the input command in String format.
      */
     public String readCommand() {
         return scanner.nextLine();

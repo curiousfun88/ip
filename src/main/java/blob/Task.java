@@ -40,6 +40,8 @@ public class Task {
 
     /**
      * This method represents task details in String form that can be printed.
+     *
+     * @return Task in String format.
      */
     @Override
     public String toString() {
@@ -48,8 +50,10 @@ public class Task {
 
     /**
      * This method converts Task from input to storage form.
+     *
+     * @return Task in storage format.
      */
-    public String serialise() {
+    public String serialize() {
         return "";
     }
 
@@ -57,8 +61,9 @@ public class Task {
      * This method converts Task from storage to input form.
      *
      * @param data specific storage data.
+     * @return Task from the stored format.
      */
-    public static Task deserialise(String data) {
+    public static Task deserialize(String data) {
         String[] components = data.split(" \\| ");
         String type = components[0];
         boolean isDone = components[1].equals("1");
@@ -86,6 +91,8 @@ public class Task {
 
     /**
      * This method returns the task description.
+     *
+     * @return Task description.
      */
     public String getDescription() {
         return this.description;

@@ -10,9 +10,9 @@ class Event extends Task {
     /**
      * Constructor for Event class.
      *
-     * @param description Event description
-     * @param from Event start time
-     * @param to Event end time
+     * @param description Event description.
+     * @param from Event start time.
+     * @param to Event end time.
      */
     public Event(String description, String from, String to) {
         super(description);
@@ -22,6 +22,8 @@ class Event extends Task {
 
     /**
      * This method represents event details in String form that can be printed.
+     *
+     * @return Event Task in String format.
      */
     @Override
     public String toString() {
@@ -29,10 +31,12 @@ class Event extends Task {
     }
 
     /**
-     * This method convert the Event task from input form to data form.
+     * This method converts the Event task from input form to data form.
+     *
+     * @return Event Task in storage format.
      */
     @Override
-    public String serialise() {
+    public String serialize() {
         return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + from + " to " + to;
     }
 

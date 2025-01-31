@@ -45,7 +45,7 @@ public class Storage {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Task task : tasks) {
-                writer.println(task.serialise());
+                writer.println(task.serialize());
             }
         } catch (IOException e) {
             System.out.println("Error saving tasks: " + e.getMessage());
@@ -54,6 +54,8 @@ public class Storage {
 
     /**
      * This method loads existing tasks in the TaskList.
+     *
+     * @return the previously saved TaskList
      */
     public TaskList loadTasks() {
         TaskList tasks = new TaskList();
@@ -69,7 +71,7 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 try {
-                    Task task = Task.deserialise(line);
+                    Task task = Task.deserialize(line);
                     tasks.add(task);
                 } catch (Exception e) {
                     System.out.println("Skipping corrupted line: " + line);

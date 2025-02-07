@@ -1,68 +1,82 @@
 package blob;
 
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+import javafx.application.Platform;
+
 /**
  * This class represents the Parser class, which processes commands.
  */
 public class Parser {
     private final TaskList tasks;
-    private final Storage storage;
     private final Ui ui;
 
     /**
      * Constructor for Parser class.
      *
      * @param tasks the TaskList involved.
-     * @param storage the Storage involved.
      * @param ui the UI involved.
      */
-    public Parser(TaskList tasks, Storage storage, Ui ui) {
+    public Parser(TaskList tasks, Ui ui) {
         this.tasks = tasks;
-        this.storage = storage;
         this.ui = ui;
     }
 
     /**
-     * This method processes the commands.
+     * This method processes the commands and returns the response for the GUI.
      *
      * @param command input command.
-     * @throws NumberFormatException if input is not a number.
+     * @return response message for the GUI.
      */
-    public void processCommand(String command) {
+    public String processCommand(String command) {
         try {
-            if (command.equals("list")) {
-                tasks.listTasks();
+            if (command.equals("bye")) {
+                String byeMessage = ui.byeMessage();
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(event -> {
+                    Platform.exit();
+                });
+                pause.play();
+                return byeMessage;
+            } else if (command.equals("list")) {
+                return tasks.listTasks();
             } else if (command.startsWith("deadlineslist")) {
-                tasks.listSameDeadlineTasks(command);
+                return tasks.listSameDeadlineTasks(command);
             } else if (command.startsWith("mark")) {
-                tasks.markTask(command);
-                storage.saveTasks(tasks);
+                String response = tasks.markTask(command);
+                Storage.saveTasks(tasks);
+                return response;
             } else if (command.startsWith("unmark")) {
-                tasks.unmarkTask(command);
-                storage.saveTasks(tasks);
+                String response = tasks.unmarkTask(command);
+                Storage.saveTasks(tasks);
+                return response;
             } else if (command.startsWith("todo")) {
-                tasks.addTodoTask(command);
-                storage.saveTasks(tasks);
+                String response = tasks.addTodoTask(command);
+                Storage.saveTasks(tasks);
+                return response;
             } else if (command.startsWith("deadline")) {
-                tasks.addDeadlineTask(command);
-                storage.saveTasks(tasks);
+                String response = tasks.addDeadlineTask(command);
+                Storage.saveTasks(tasks);
+                return response;
             } else if (command.startsWith("event")) {
-                tasks.addEventTask(command);
-                storage.saveTasks(tasks);
+                String response = tasks.addEventTask(command);
+                Storage.saveTasks(tasks);
+                return response;
             } else if (command.startsWith("delete")) {
-                tasks.deleteTask(command);
-                storage.saveTasks(tasks);
+                String response = tasks.deleteTask(command);
+                Storage.saveTasks(tasks);
+                return response;
             } else if (command.startsWith("find")) {
-                tasks.findTask(command);
+                return tasks.findTask(command);
             } else {
-                ui.invalidCommandMessage();
+                return ui.invalidCommandMessage();
             }
         } catch (BlobException e) {
-            ui.error(e.getMessage());
+            return ui.error(e.getMessage());
         } catch (NumberFormatException e) {
-            ui.error("Please specify which task!");
+            return ui.error("Please specify which task!");
         } catch (Exception e) {
-            ui.error("Please input again for blob.Blob!");
+            return ui.error("Please input again for Blob!");
         }
     }
 }
-

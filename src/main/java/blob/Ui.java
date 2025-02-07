@@ -5,7 +5,6 @@ import java.util.Scanner;
 /**
  * This class represents the Ui class, the basic running of the application.
  */
-
 public class Ui {
     private final Scanner scanner;
 
@@ -19,20 +18,15 @@ public class Ui {
     /**
      * This method returns the hello message.
      */
-    public void helloMessage() {
-        System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Blob!!");
-        System.out.println(" What can I do for you?");
-        System.out.println("____________________________________________________________");
+    public static String helloMessage() {
+        return "Hello! I'm Blob!!\nWhat can I do for you?";
     }
 
     /**
      * This method returns the exit message.
      */
-    public void byeMessage() {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("    Bye. Hope to see you again soon!");
-        System.out.println("    ____________________________________________________________");
+    public String byeMessage() {
+        return "Thank you. Before you go, huggie for Blob? ";
     }
 
     /**
@@ -47,8 +41,8 @@ public class Ui {
     /**
      * This method loads the loading error message.
      */
-    public void loadingError() {
-        System.out.println("Error loading data file. Starting with an empty task list.");
+    public String loadingError() {
+        return "Error loading data file. Starting with an empty task list.";
     }
 
     /**
@@ -56,27 +50,23 @@ public class Ui {
      *
      * @param message the given message.
      */
-    public void showMessage(String message) {
-        System.out.println(message);
+    public String showMessage(String message) {
+        return message;
     }
 
     /**
      * This method displays invalid command message.
      */
-    public void invalidCommandMessage() {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("    Please key in a valid task! blob.Blob doesn't know what you want!!");
-        System.out.println("    ____________________________________________________________");
+    public String invalidCommandMessage() {
+        return "Please key in a valid task! Blob doesn't know what you want!!";
     }
 
     /**
-     * The method isplays an error message with the given message.
+     * The method plays an error message with the given message.
      *
      * @param message the input message.
      */
-    public void error(String message) {
-        System.out.println("    ____________________________________________________________");
-        System.out.println("    ERROR: " + message);
-        System.out.println("    ____________________________________________________________");
+    public String error(String message) {
+        return "ERROR: " + message;
     }
 }

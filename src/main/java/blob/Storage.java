@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Storage {
     private final String filePath;
     private final String directoryPath;
+    public static final String FILE_PATH = "./ip/data/blob.txt";
 
     /**
      * Constructor for Storage.
@@ -29,8 +30,8 @@ public class Storage {
      *
      * @param tasks the TaskList involved
      */
-    public void saveTasks(TaskList tasks) {
-        File directory = new File(directoryPath);
+    public static void saveTasks(TaskList tasks) {
+        File directory = new File(FILE_PATH);
 
         //check if folder exists
         if (!directory.exists()) {
@@ -38,7 +39,7 @@ public class Storage {
         }
 
         //if file does not exist, create new file
-        File file = new File(filePath);
+        File file = new File(FILE_PATH);
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -47,7 +48,7 @@ public class Storage {
             }
         }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
             for (Task task : tasks) {
                 writer.println(task.serialize());
             }
@@ -61,9 +62,9 @@ public class Storage {
      *
      * @return the previously saved TaskList
      */
-    public TaskList loadTasks() {
+    public static TaskList loadTasks() {
         TaskList tasks = new TaskList();
-        File file = new File(filePath);
+        File file = new File(FILE_PATH);
 
         //check if file exists
         if (!file.exists()) {

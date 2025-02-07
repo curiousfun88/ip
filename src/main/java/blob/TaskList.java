@@ -89,7 +89,8 @@ public class TaskList implements Iterable<Task> {
         String due = command.substring(byIndex).trim();
         Task deadline = new Deadline(description, due);
         tasks.add(deadline);
-        return "Got it. I've added this task:\n  " + deadline + "\nNow you have " + tasks.size() + " tasks in the list.";
+        return "Got it. I've added this task:\n  " + deadline
+                + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
     /**

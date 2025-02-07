@@ -27,13 +27,18 @@ public class MainWindow extends AnchorPane {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/box.png"));
     private final Image blobImage = new Image(this.getClass().getResourceAsStream("/images/blob.png"));
 
+    /**
+     * Initializer for the main GUI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         sendButton.setOnAction(event -> handleUserInput());
     }
 
-    /** Injects the Blob instance */
+    /**
+     * Injects the Blob instance.
+     */
     public void setBlob(Blob b) {
         blob = b;
 

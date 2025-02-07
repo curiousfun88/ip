@@ -1,8 +1,8 @@
 package blob;
 
 import javafx.animation.PauseTransition;
-import javafx.util.Duration;
 import javafx.application.Platform;
+import javafx.util.Duration;
 
 /**
  * This class represents the Parser class, which processes commands.

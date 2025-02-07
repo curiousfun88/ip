@@ -11,9 +11,9 @@ import java.util.Scanner;
  * This class represents the Storage class for storing data.
  */
 public class Storage {
+    private static final String FILE_PATH = "./ip/data/blob.txt";
     private final String filePath;
     private final String directoryPath;
-    public static final String FILE_PATH = "./ip/data/blob.txt";
 
     /**
      * Constructor for Storage.

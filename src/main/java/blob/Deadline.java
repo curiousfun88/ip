@@ -10,9 +10,9 @@ import java.util.List;
  * This class represents the Deadline task type.
  */
 class Deadline extends Task {
-    private final LocalDateTime deadline;  // Store deadline as LocalDateTime
     private static final DateTimeFormatter STORAGE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
     private static final DateTimeFormatter RUN_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm");
+    private final LocalDateTime deadline; // Store deadline as LocalDateTime
 
     /**
      * Constructor for Deadline class.
@@ -61,7 +61,8 @@ class Deadline extends Task {
      */
     @Override
     public String serialize() {
-        DateTimeFormatter output = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"); //output format: month/day/year time (24h format)
+        DateTimeFormatter output = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        //output format: month/day/year time (24h format)
         return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + deadline.format(output);
     }
 
@@ -86,7 +87,7 @@ class Deadline extends Task {
         List<Deadline> sameDayDeadlines = new ArrayList<>();
 
         for (Deadline deadlineTask : allDeadlines) {
-            LocalDate taskDate = deadlineTask.getDeadline().toLocalDate();  // obtain the date part of the deadline
+            LocalDate taskDate = deadlineTask.getDeadline().toLocalDate(); // obtain the date part of the deadline
             if (taskDate.equals(targetDate)) {
                 sameDayDeadlines.add(deadlineTask);
             }

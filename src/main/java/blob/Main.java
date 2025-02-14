@@ -15,6 +15,15 @@ public class Main extends Application {
 
     private final Blob blob = new Blob();
 
+    /**
+     * Initializes and shows the main GUI window for the Blob application.
+     * This method loads the FXML layout for the main window, sets up the
+     * scene and stage for the JavaFX application, and injects the Blob instance
+     * into the controller. It also handles any IOExceptions that may occur
+     * during the loading of the FXML file.
+     *
+     * @param stage The primary stage for the JavaFX application.
+     */
     @Override
     public void start(Stage stage) {
         try {

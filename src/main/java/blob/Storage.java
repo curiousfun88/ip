@@ -8,67 +8,75 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
- * This class represents the Storage class for storing data.
+ * Handles loading and saving tasks from a specific file.
  */
 public class Storage {
-    private static final String FILE_PATH = "./ip/data/blob.txt";
     private final String filePath;
     private final String directoryPath;
 
     /**
-     * Constructor for Storage.
+     * Constructs a Storage object for managing task persistence.
      *
-     * @param filePath File Path to the file involved.
+     * @param filePath The file path where tasks are stored.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
-        this.directoryPath = new File(filePath).getParent(); // Extracts directory path
+        this.directoryPath = new File(filePath).getParent(); // Extract directory path
+
+        // Delete existing file if it exists
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+
+        // Ensure the directory exists before creating a new file
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        try {
+            file.createNewFile(); // Create a new empty file
+        } catch (IOException e) {
+            System.out.println("Error creating new file: " + e.getMessage());
+        }
     }
 
     /**
-     * This method saves the existing tasks to the TaskList.
+     * Saves tasks to the specified file.
      *
-     * @param tasks the TaskList involved
+     * @param tasks The TaskList to save.
      */
-    public static void saveTasks(TaskList tasks) {
-        File directory = new File(FILE_PATH);
+    public void saveTasks(TaskList tasks) {
+        File directory = new File(directoryPath);
 
-        //check if folder exists
+        // Ensure the directory exists before writing
         if (!directory.exists()) {
-            directory.mkdir();
+            directory.mkdirs();
         }
 
-        //if file does not exist, create new file
-        File file = new File(FILE_PATH);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Error creating file: " + e.getMessage());
-            }
-        }
-
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
+        File file = new File(filePath);
+        try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
             for (Task task : tasks) {
                 writer.println(task.serialize());
             }
+            System.out.println("Tasks successfully saved to: " + filePath);
         } catch (IOException e) {
-            System.out.println("Error saving tasks: " + e.getMessage());
+            System.out.println("Error saving tasks to " + filePath + ": " + e.getMessage());
         }
     }
 
     /**
-     * This method loads existing tasks in the TaskList.
+     * Loads tasks from the specified file.
      *
-     * @return the previously saved TaskList
+     * @return A TaskList containing the saved tasks.
      */
-    public static TaskList loadTasks() {
+    public TaskList loadTasks() {
         TaskList tasks = new TaskList();
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
 
-        //check if file exists
         if (!file.exists()) {
-            System.out.println("Data file does not exist. Returning empty task list.");
+            System.out.println("Data file does not exist at " + filePath + ". Returning empty task list.");
             return tasks;
         }
 
@@ -82,8 +90,9 @@ public class Storage {
                     System.out.println("Skipping corrupted line: " + line);
                 }
             }
+            System.out.println("Tasks successfully loaded from: " + filePath);
         } catch (FileNotFoundException e) {
-            System.out.println("Error loading tasks: " + e.getMessage());
+            System.out.println("Error loading tasks from " + filePath + ": " + e.getMessage());
         }
         return tasks;
     }

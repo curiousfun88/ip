@@ -9,6 +9,7 @@ import javafx.util.Duration;
  */
 public class Parser {
     private final TaskList tasks;
+    private final Storage storage;
     private final Ui ui;
 
     /**
@@ -17,8 +18,9 @@ public class Parser {
      * @param tasks the TaskList involved.
      * @param ui the UI involved.
      */
-    public Parser(TaskList tasks, Ui ui) {
+    public Parser(TaskList tasks, Storage storage, Ui ui) {
         this.tasks = tasks;
+        this.storage = storage;
         this.ui = ui;
     }
 
@@ -44,27 +46,27 @@ public class Parser {
                 return tasks.listSameDeadlineTasks(command);
             } else if (command.startsWith("mark")) {
                 String response = tasks.markTask(command);
-                Storage.saveTasks(tasks);
+                storage.saveTasks(tasks);
                 return response;
             } else if (command.startsWith("unmark")) {
                 String response = tasks.unmarkTask(command);
-                Storage.saveTasks(tasks);
+                storage.saveTasks(tasks);
                 return response;
             } else if (command.startsWith("todo")) {
                 String response = tasks.addTodoTask(command);
-                Storage.saveTasks(tasks);
+                storage.saveTasks(tasks);
                 return response;
             } else if (command.startsWith("deadline")) {
                 String response = tasks.addDeadlineTask(command);
-                Storage.saveTasks(tasks);
+                storage.saveTasks(tasks);
                 return response;
             } else if (command.startsWith("event")) {
                 String response = tasks.addEventTask(command);
-                Storage.saveTasks(tasks);
+                storage.saveTasks(tasks);
                 return response;
             } else if (command.startsWith("delete")) {
                 String response = tasks.deleteTask(command);
-                Storage.saveTasks(tasks);
+                storage.saveTasks(tasks);
                 return response;
             } else if (command.startsWith("find")) {
                 return tasks.findTask(command);

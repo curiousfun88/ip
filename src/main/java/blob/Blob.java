@@ -25,8 +25,10 @@ public class Blob {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
+        assert input != null: "User input should not be null";
         Parser parse = new Parser(tasks, ui);
         String result = parse.processCommand(input);
+        assert result != null : "Processed command result should not be null";
         return "Blob: " + result;
     }
 }

@@ -6,6 +6,7 @@ package blob;
 
 public class Blob {
     private TaskList tasks;
+    private Storage storage;
     private final Ui ui;
 
     /**
@@ -14,7 +15,8 @@ public class Blob {
     public Blob() {
         ui = new Ui();
         try {
-            tasks = Storage.loadTasks();
+            this.storage = new Storage("./ip/data/blob.txt");
+            tasks = storage.loadTasks();
         } catch (Exception e) {
             ui.loadingError();
             tasks = new TaskList();
@@ -25,10 +27,8 @@ public class Blob {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        assert input != null: "User input should not be null";
-        Parser parse = new Parser(tasks, ui);
+        Parser parse = new Parser(tasks, storage, ui);
         String result = parse.processCommand(input);
-        assert result != null : "Processed command result should not be null";
         return "Blob: " + result;
     }
 }

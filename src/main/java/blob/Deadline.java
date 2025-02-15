@@ -13,6 +13,7 @@ class Deadline extends Task {
     private static final DateTimeFormatter STORAGE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
     private static final DateTimeFormatter RUN_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm");
     private final LocalDateTime deadline; // Store deadline as LocalDateTime
+    private final String by;
 
     /**
      * Constructor for Deadline class.
@@ -23,6 +24,7 @@ class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.deadline = parseDateTime(by);
+        this.by = by;
     }
 
     /**
@@ -73,6 +75,15 @@ class Deadline extends Task {
      */
     public LocalDateTime getDeadline() {
         return this.deadline;
+    }
+
+    /**
+     * This method gets the deadline date in String form.
+     *
+     * @return String.
+     */
+    public String getDeadlineString() {
+        return this.by;
     }
 
     /**

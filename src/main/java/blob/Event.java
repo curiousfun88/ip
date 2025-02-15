@@ -40,5 +40,23 @@ class Event extends Task {
         return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + from + " to " + to;
     }
 
+    /**
+     * Retrieves the start time of the event.
+     *
+     * @return The start time as a string.
+     */
+    public String getStartTime() {
+        return this.from;
+    }
+
+    /**
+     * Retrieves the end time of the event.
+     *
+     * @return The end time as a string.
+     */
+    public String getEndTime() {
+        return this.to;
+    }
+
 }
 

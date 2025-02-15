@@ -20,14 +20,56 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Adds the task to the TaskList.
+     * Adds the task to the TaskList after checking for duplicates.
+     * If the task is a duplicate, it will not be added.
      *
-     * @param task the Task to be added.
+     * @param task The task to be added.
      */
     public void add(Task task) {
         int initialSize = tasks.size();
         tasks.add(task);
         assert tasks.size() == initialSize + 1 : "Task was not added correctly!";
+    }
+
+    /**
+     * Checks if a Todo task with the specified description already exists in the task list.
+     *
+     * @param description The description of the Todo task.
+     * @return true if a Todo task with the same description exists, false otherwise.
+     */
+    private boolean isDuplicateTodo(String description) {
+        return tasks.stream()
+                .anyMatch(task -> task.getDescription().equals(description));
+    }
+
+    /**
+     * Checks if a Deadline task with the specified description and due date already exists in the task list.
+     *
+     * @param description The description of the Deadline task.
+     * @param due The due date of the Deadline task.
+     * @return true if a Deadline task with the same description and due date exists, false otherwise.
+     */
+    private boolean isDuplicateDeadline(String description, String due) {
+        return tasks.stream()
+                .filter(task -> task instanceof Deadline)
+                .anyMatch(deadline -> deadline.getDescription().equals(description)
+                        && ((Deadline) deadline).getDeadlineString().equals(due));
+    }
+
+    /**
+     * Checks if an Event task with the specified description, start time, and end time already exists in the task list.
+     *
+     * @param description The description of the Event task.
+     * @param startTime The start time of the Event.
+     * @param endTime The end time of the Event.
+     * @return true if an Event task with the same description, start time, and end time exists, false otherwise.
+     */
+    private boolean isDuplicateEvent(String description, String startTime, String endTime) {
+        return tasks.stream()
+                .filter(task -> task instanceof Event)
+                .anyMatch(event -> event.getDescription().equals(description)
+                        && ((Event) event).getStartTime().equals(startTime)
+                        && ((Event) event).getEndTime().equals(endTime));
     }
 
     /**
@@ -73,6 +115,10 @@ public class TaskList implements Iterable<Task> {
             throw new BlobException("Key in your task! You can't be doing nothing lazy bum!!");
         }
         Task todo = new Todo(description);
+        if (isDuplicateTodo(description)) {
+            throw new BlobException("Duplicate todo detected. Stop re-keying the same task! "
+                    + "Blob may be fat but I will not eat your stuff!!");
+        }
         tasks.add(todo);
         return "Got it. I've added this task:\n  " + todo + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
@@ -90,6 +136,10 @@ public class TaskList implements Iterable<Task> {
         String description = command.substring(startIndex, endIndex).trim();
         String due = command.substring(byIndex).trim();
         Task deadline = new Deadline(description, due);
+        if (isDuplicateDeadline(description, due)) {
+            throw new BlobException("Duplicate deadline detected. Stop re-keying the same task! "
+                    + "Blob may be fat but I will not eat your stuff!!");
+        }
         tasks.add(deadline);
         return "Got it. I've added this task:\n  " + deadline
                 + "\nNow you have " + tasks.size() + " tasks in the list.";
@@ -115,6 +165,10 @@ public class TaskList implements Iterable<Task> {
             throw new BlobException("Please ensure all event details are entered! Blob can't read your mind!!");
         }
         Task event = new Event(description, startTime, endTime);
+        if (isDuplicateEvent(description, startTime, endTime)) {
+            throw new BlobException("Duplicate event detected. Stop re-keying the same task! "
+                    + "Blob may be fat but I will not eat your stuff!!");
+        }
         tasks.add(event);
         return "Got it. I've added this task:\n  " + event + "\nNow you have " + tasks.size() + " tasks in the list.";
     }

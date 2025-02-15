@@ -26,7 +26,9 @@ public class TaskList implements Iterable<Task> {
      * @param task The task to be added.
      */
     public void add(Task task) {
+        int initialSize = tasks.size();
         tasks.add(task);
+        assert tasks.size() == initialSize + 1 : "Task was not added correctly!";
     }
 
     /**

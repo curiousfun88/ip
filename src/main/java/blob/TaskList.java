@@ -88,6 +88,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Marks the task as done.
+     *
+     * @param command markTask command and task index.
      */
     public String markTask(String command) throws BlobException {
         int index = parseIndex(command);
@@ -98,6 +100,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Unmarks the task as undone.
+     *
+     * @param command unmarkTask command and task index.
      */
     public String unmarkTask(String command) throws BlobException {
         int index = parseIndex(command);
@@ -108,6 +112,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Adds a Todo task to the TaskList.
+     *
+     * @param command addTodoTask command and task details.
      */
     public String addTodoTask(String command) throws BlobException {
         String description = command.substring(4).trim();
@@ -125,6 +131,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Adds a Deadline task to the TaskList.
+     *
+     * @param command addDeadlineTask command and task details.
      */
     public String addDeadlineTask(String command) throws BlobException {
         int startIndex = 8;
@@ -147,6 +155,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Adds an Event task to the TaskList.
+     *
+     * @param command addEventTask command and task details.
      */
     public String addEventTask(String command) throws BlobException {
         int startIndex = 5;
@@ -175,6 +185,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Deletes a task from the TaskList.
+     *
+     * @param command deleteTask command and task index.
      */
     public String deleteTask(String command) throws BlobException {
         int index = parseIndex(command);
@@ -184,6 +196,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Finds tasks that contain the given keyword.
+     *
+     * @param command findTask command and task index.
      */
     public String findTask(String command) throws BlobException {
         if (command.split(" ").length < 2) {
@@ -211,6 +225,8 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Lists tasks with the same deadline.
+     *
+     * @param command listSameDeadlineTasks command and deadline date.
      */
     public String listSameDeadlineTasks(String command) {
         try {
@@ -261,7 +277,6 @@ public class TaskList implements Iterable<Task> {
         return tasks.iterator();
     }
 
-    // Helper methods
     /**
      * This method parses the index.
      */

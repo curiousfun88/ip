@@ -29,6 +29,6 @@ public class Blob {
     public String getResponse(String input) {
         Parser parse = new Parser(tasks, storage, ui);
         String result = parse.processCommand(input);
-        return "Blob: " + result;
+        return result;
     }
 }

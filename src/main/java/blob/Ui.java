@@ -19,7 +19,8 @@ public class Ui {
      * This method returns the hello message.
      */
     public static String helloMessage() {
-        return "Hello! I'm Blob!!\nWhat can I do for you?";
+        return "Welcome sleepyhead! I'm Blob!!\nI help you do the things that you are too lazy to do yourself...like tracking your tasks!" +
+                " Let's begin :)";
     }
 
     /**
@@ -68,5 +69,12 @@ public class Ui {
      */
     public String error(String message) {
         return "ERROR: " + message;
+    }
+
+    /**
+     * The method returns a reply to the user's repeated Hi(s);
+     */
+    public String hiReplyMessage() {
+        return "yes hello! Cut to the chase. Zzz Blob ain't got all day. Blob needs to sleep!! -.-";
     }
 }

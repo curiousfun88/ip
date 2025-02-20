@@ -40,6 +40,8 @@ public class Parser {
                 });
                 pause.play();
                 return byeMessage;
+            } else if (command.equalsIgnoreCase("Hello") || command.equalsIgnoreCase("Hi")) {
+                return ui.hiReplyMessage();
             } else if (command.equals("list")) {
                 return tasks.listTasks();
             } else if (command.startsWith("deadlineslist")) {

@@ -19,8 +19,9 @@ public class Ui {
      * This method returns the hello message.
      */
     public static String helloMessage() {
-        return "Welcome sleepyhead! I'm Blob!!\nI help you do the things that you are too lazy to do yourself...like tracking your tasks!" +
-                " Let's begin :)";
+        return "Welcome sleepyhead! I'm Blob!!\n"
+                + "I help you do the things that you are too lazy to do yourself...like tracking your tasks!"
+                + " Let's begin :)";
     }
 
     /**

@@ -32,7 +32,7 @@ public class Parser {
      */
     public String processCommand(String command) {
         try {
-            if (command.equals("bye")) {
+            if (command.equalsIgnoreCase("bye")) {
                 String byeMessage = ui.byeMessage();
                 PauseTransition pause = new PauseTransition(Duration.seconds(2));
                 pause.setOnFinished(event -> {

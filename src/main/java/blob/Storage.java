@@ -23,12 +23,7 @@ public class Storage {
         this.filePath = filePath;
         this.directoryPath = new File(filePath).getParent(); // Extract directory path
 
-        // Delete existing file if it exists
         File file = new File(filePath);
-        if (file.exists()) {
-            file.delete();
-        }
-
         // Ensure the directory exists before creating a new file
         File directory = new File(directoryPath);
         if (!directory.exists()) {

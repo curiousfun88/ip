@@ -1,1 +1,3 @@
-T | 0 | watch CS2100 lecture
+T | 0 | study for exam
+D | 0 | buy broccoli | Mar 03 2025 18:30
+T | 0 | exam

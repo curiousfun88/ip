@@ -1,5 +1,5 @@
-T | 0 | hi
-D | 1 | hello | Mar 03 2025 18:00
-D | 0 | yo | Mar 03 2025 18:42
-E | 0 | mahjong | 34 to 43
-D | 0 | fgfg | Mar 03 2024 18:00
+T | 0 | study for exam
+D | 0 | buy food | Mar 03 2025 18:00
+D | 0 | buy groceries | Mar 03 2025 19:43
+E | 1 | party | Fri 8pm to Fri 10pm
+D | 0 | quiz | Mar 03 2024 18:54

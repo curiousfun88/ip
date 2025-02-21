@@ -3,3 +3,4 @@ D | 0 | buy food | Mar 03 2025 18:00
 D | 0 | buy groceries | Mar 03 2025 19:43
 E | 1 | party | Fri 8pm to Fri 10pm
 D | 0 | quiz | Mar 03 2024 18:54
+D | 0 | e | Mar 03 2025 18:00

@@ -83,7 +83,7 @@ class Deadline extends Task {
      * @return String.
      */
     public String getDeadlineString() {
-        return this.by;
+        return deadline.format(STORAGE_FORMAT);
     }
 
     /**

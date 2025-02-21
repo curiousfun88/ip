@@ -1,6 +1,7 @@
 package blob;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,10 +51,30 @@ public class TaskList implements Iterable<Task> {
      * @return true if a Deadline task with the same description and due date exists, false otherwise.
      */
     private boolean isDuplicateDeadline(String description, String due) {
+        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"); // "Mar 03 2025 18:00"
+        DateTimeFormatter format2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm"); // "2025/03/03 1800"
+
+        LocalDateTime parsedDue = null;
+
+        try {
+            if (due.matches("\\d{4}/\\d{2}/\\d{2} \\d{4}")) {
+                parsedDue = LocalDateTime.parse(due, format2);
+            } else {
+                parsedDue = LocalDateTime.parse(due, format1);
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        String formattedDue = parsedDue.format(format1); // Normalize format
+
         return tasks.stream()
                 .filter(task -> task instanceof Deadline)
-                .anyMatch(deadline -> deadline.getDescription().equals(description)
-                        && ((Deadline) deadline).getDeadlineString().equals(due));
+                .anyMatch(deadline -> {
+                    String storedDue = ((Deadline) deadline).getDeadlineString();
+                    return deadline.getDescription().equals(description)
+                            && storedDue.equals(formattedDue);
+                });
     }
 
     /**
@@ -142,6 +163,9 @@ public class TaskList implements Iterable<Task> {
             throw new BlobException("HOLD ON! Blob doesn't know when your task is due! Please key in!!");
         }
         String description = command.substring(startIndex, endIndex).trim();
+        if (description.isEmpty()) {
+            throw new BlobException("STOP RIGHT THERE! You can't have a nameless deadline! Don't try to fool Blob!!");
+        }
         String due = command.substring(byIndex).trim();
         Task deadline = new Deadline(description, due);
         if (isDuplicateDeadline(description, due)) {

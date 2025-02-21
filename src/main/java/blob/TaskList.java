@@ -40,6 +40,7 @@ public class TaskList implements Iterable<Task> {
      */
     private boolean isDuplicateTodo(String description) {
         return tasks.stream()
+                .filter(task -> task instanceof Todo)
                 .anyMatch(task -> task.getDescription().equals(description));
     }
 

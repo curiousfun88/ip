@@ -25,21 +25,15 @@ public class Parser {
     }
 
     /**
-     * Processes the commands and returns the response for the GUI.
+     * Processes the user command and delegates it to specific handlers based on the command.
      *
-     * @param command input command.
-     * @return response message for the GUI.
+     * @param command The user input command to process.
+     * @return A response message based on the processed command.
      */
     public String processCommand(String command) {
         try {
             if (command.equalsIgnoreCase("bye")) {
-                String byeMessage = ui.byeMessage();
-                PauseTransition pause = new PauseTransition(Duration.seconds(2));
-                pause.setOnFinished(event -> {
-                    Platform.exit();
-                });
-                pause.play();
-                return byeMessage;
+                return handleBye();
             } else if (command.equalsIgnoreCase("Hello") || command.equalsIgnoreCase("Hi")) {
                 return ui.hiReplyMessage();
             } else if (command.equals("list")) {
@@ -47,29 +41,17 @@ public class Parser {
             } else if (command.startsWith("deadlineslist")) {
                 return tasks.listSameDeadlineTasks(command);
             } else if (command.startsWith("mark")) {
-                String response = tasks.markTask(command);
-                storage.saveTasks(tasks);
-                return response;
+                return handleTaskUpdate(command, true);
             } else if (command.startsWith("unmark")) {
-                String response = tasks.unmarkTask(command);
-                storage.saveTasks(tasks);
-                return response;
+                return handleTaskUpdate(command, false);
             } else if (command.startsWith("todo")) {
-                String response = tasks.addTodoTask(command);
-                storage.saveTasks(tasks);
-                return response;
+                return handleTaskAddition(command, "todo");
             } else if (command.startsWith("deadline")) {
-                String response = tasks.addDeadlineTask(command);
-                storage.saveTasks(tasks);
-                return response;
+                return handleTaskAddition(command, "deadline");
             } else if (command.startsWith("event")) {
-                String response = tasks.addEventTask(command);
-                storage.saveTasks(tasks);
-                return response;
+                return handleTaskAddition(command, "event");
             } else if (command.startsWith("delete")) {
-                String response = tasks.deleteTask(command);
-                storage.saveTasks(tasks);
-                return response;
+                return handleTaskDeletion(command);
             } else if (command.startsWith("find")) {
                 return tasks.findTask(command);
             } else {
@@ -82,5 +64,74 @@ public class Parser {
         } catch (Exception e) {
             return ui.error("Please input again for Blob!");
         }
+    }
+
+    /**
+     * Handles the "bye" command with a delayed exit.
+     *
+     * @return The farewell message to the user.
+     */
+    private String handleBye() {
+        String byeMessage = ui.byeMessage();
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(event -> Platform.exit());
+        pause.play();
+        return byeMessage;
+    }
+
+    /**
+     * Handles task update operations like marking/unmarking tasks.
+     *
+     * @param command The user input command to update a task.
+     * @param isMark True for marking tasks, false for unmarking.
+     * @return The response message after updating the task.
+     */
+    private String handleTaskUpdate(String command, boolean isMark) throws BlobException {
+        String response;
+        if (isMark) {
+            response = tasks.markTask(command);
+        } else {
+            response = tasks.unmarkTask(command);
+        }
+        storage.saveTasks(tasks);
+        return response;
+    }
+
+    /**
+     * Handles the addition of a new task based on the specified task type.
+     *
+     * @param command The user input command to add a new task.
+     * @param type The type of task to add (e.g., "todo", "deadline", "event").
+     * @return The response message after adding the task.
+     */
+    private String handleTaskAddition(String command, String type) throws BlobException {
+        String response;
+        switch (type) {
+        case "todo":
+            response = tasks.addTodoTask(command);
+            break;
+        case "deadline":
+            response = tasks.addDeadlineTask(command);
+            break;
+        case "event":
+            response = tasks.addEventTask(command);
+            break;
+        default:
+            return ui.invalidCommandMessage();
+        }
+        storage.saveTasks(tasks);
+        return response;
+    }
+
+    /**
+     * Handles the deletion of a task based on the command.
+     *
+     * @param command The user input command to delete a task.
+     * @return The response message after deleting the task.
+     */
+    private String handleTaskDeletion(String command) throws BlobException {
+        String response = tasks.deleteTask(command);
+        storage.saveTasks(tasks);
+        return response;
     }
 }

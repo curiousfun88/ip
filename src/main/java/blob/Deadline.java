@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents the Deadline task type.
+ * Represents the Deadline task type.
  */
 class Deadline extends Task {
     private static final DateTimeFormatter STORAGE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
@@ -28,7 +28,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method parses the date string to LocalDateTime.
+     * Parses the date string to LocalDateTime.
      *
      * @param by data string to be converted.
      * @return LocalDateTime.
@@ -46,7 +46,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method represents the deadline task in a printable string form.
+     * Returns the deadline task in a printable string form.
      *
      * @return Deadline Task in String format.
      */
@@ -57,7 +57,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method converts the blob.Deadline task from input form to data form (for storage).
+     * Converts the blob.Deadline task from input form to data form (for storage).
      *
      * @return Deadline Task in storage format.
      */
@@ -69,7 +69,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method gets the deadline date.
+     * Gets the deadline date.
      *
      * @return LocalDateTime.
      */
@@ -78,7 +78,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method gets the deadline date in String form.
+     * Gets the deadline date in String form.
      *
      * @return String.
      */
@@ -87,7 +87,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method obtains the deadlines that falls on the same date.
+     * Obtains the deadlines that falls on the same date.
      *
      * @param targetDate deadlines that fall on that specified date.
      * @param tasks the TaskList that houses the deadlines.
@@ -107,7 +107,7 @@ class Deadline extends Task {
     }
 
     /**
-     * This method loads all deadline tasks with the same date.
+     * Loads all deadline tasks with the same date.
      *
      * @param tasks the TaskList that houses the deadlines.
      * @return list of tasks with same date deadlines.

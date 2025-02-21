@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * This class represents the TaskList class that houses all task operations.
+ * Represents the TaskList class that houses all task operations.
  */
 public class TaskList implements Iterable<Task> {
     private final ArrayList<Task> tasks;
@@ -211,16 +211,16 @@ public class TaskList implements Iterable<Task> {
             }
         }
         StringBuilder result = new StringBuilder("Here are the matching tasks:\n");
-        boolean found = false;
+        boolean isFound = false;
 
         for (Task task : tasks) {
             if (task.getDescription().contains(keyword)) {
                 result.append(task).append("\n");
-                found = true;
+                isFound = true;
             }
         }
 
-        return found ? result.toString() : "No matching tasks found!";
+        return isFound ? result.toString() : "No matching tasks found!";
     }
 
     /**
@@ -278,7 +278,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * This method parses the index.
+     * Parses the index.
      */
     private int parseIndex(String command) throws BlobException {
         try {

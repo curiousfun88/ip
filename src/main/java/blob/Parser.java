@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.util.Duration;
 
 /**
- * This class represents the Parser class, which processes commands.
+ * Represents the Parser class, which processes commands.
  */
 public class Parser {
     private final TaskList tasks;
@@ -25,7 +25,7 @@ public class Parser {
     }
 
     /**
-     * This method processes the commands and returns the response for the GUI.
+     * Processes the commands and returns the response for the GUI.
      *
      * @param command input command.
      * @return response message for the GUI.

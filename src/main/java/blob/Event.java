@@ -1,7 +1,7 @@
 package blob;
 
 /**
- * This class represents the Event task type.
+ * Represents the Event task type.
  */
 class Event extends Task {
     protected String from;
@@ -21,7 +21,7 @@ class Event extends Task {
     }
 
     /**
-     * This method represents event details in String form that can be printed.
+     * Returns event details in String form that can be printed.
      *
      * @return Event Task in String format.
      */
@@ -31,7 +31,7 @@ class Event extends Task {
     }
 
     /**
-     * This method converts the Event task from input form to data form.
+     * Converts the Event task from input form to data form.
      *
      * @return Event Task in storage format.
      */

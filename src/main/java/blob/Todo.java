@@ -1,7 +1,7 @@
 package blob;
 
 /**
- * This class represents the Todo task type.
+ * Represents the Todo task type.
  */
 class Todo extends Task {
     /**
@@ -14,7 +14,7 @@ class Todo extends Task {
     }
 
     /**
-     * This method represents todo details in String form that can be printed.
+     * Returns todo details in String form that can be printed.
      *
      * @return Todo task in String format.
      */
@@ -24,7 +24,7 @@ class Todo extends Task {
     }
 
     /**
-     * This method converts the Todo task from input form to data form.
+     * Converts the Todo task from input form to data form.
      *
      * @return Todo task in storage format.
      */

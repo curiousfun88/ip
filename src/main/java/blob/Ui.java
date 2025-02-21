@@ -3,7 +3,7 @@ package blob;
 import java.util.Scanner;
 
 /**
- * This class represents the Ui class, the basic running of the application.
+ * Represents the Ui class, the basic running of the application.
  */
 public class Ui {
     private final Scanner scanner;
@@ -16,7 +16,7 @@ public class Ui {
     }
 
     /**
-     * This method returns the hello message.
+     * Returns the hello message.
      */
     public static String helloMessage() {
         return "Welcome sleepyhead! I'm Blob!!\n"
@@ -25,14 +25,14 @@ public class Ui {
     }
 
     /**
-     * This method returns the exit message.
+     * Returns the exit message.
      */
     public String byeMessage() {
         return "Thank you. Before you go, huggie for Blob? ";
     }
 
     /**
-     * This method reads the user input.
+     * Reads the user input.
      *
      * @return the input command in String format.
      */
@@ -41,14 +41,14 @@ public class Ui {
     }
 
     /**
-     * This method loads the loading error message.
+     * Loads the loading error message.
      */
     public String loadingError() {
         return "Error loading data file. Starting with an empty task list.";
     }
 
     /**
-     * This method displays the given message.
+     * Displays the given message.
      *
      * @param message the given message.
      */
@@ -57,14 +57,14 @@ public class Ui {
     }
 
     /**
-     * This method displays invalid command message.
+     * Displays invalid command message.
      */
     public String invalidCommandMessage() {
         return "Please key in a valid task! Blob doesn't know what you want!!";
     }
 
     /**
-     * The method plays an error message with the given message.
+     * Plays an error message with the given message.
      *
      * @param message the input message.
      */
@@ -73,7 +73,7 @@ public class Ui {
     }
 
     /**
-     * The method returns a reply to the user's repeated Hi(s);
+     * Returns a reply to the user's repeated Hi(s);
      */
     public String hiReplyMessage() {
         return "yes hello! Cut to the chase. Zzz Blob ain't got all day. Blob needs to sleep!! -.-";

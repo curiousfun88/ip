@@ -1,7 +1,7 @@
 package blob;
 
 /**
- * This class represents the Task superclass.
+ * Represents the Task superclass.
  */
 public class Task {
     protected String description;
@@ -18,28 +18,28 @@ public class Task {
     }
 
     /**
-     * This method obtains the current task status (marked/unmarked).
+     * Obtains the current task status (marked/unmarked).
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
     /**
-     * This method helps to mark the task as done.
+     * Helps to mark the task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * This method helps to mark the task as not done.
+     * Helps to mark the task as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
     /**
-     * This method represents task details in String form that can be printed.
+     * Returns task details in String form that can be printed.
      *
      * @return Task in String format.
      */
@@ -49,7 +49,7 @@ public class Task {
     }
 
     /**
-     * This method converts Task from input to storage form.
+     * Converts Task from input to storage form.
      *
      * @return Task in storage format.
      */
@@ -58,7 +58,7 @@ public class Task {
     }
 
     /**
-     * This method converts Task from storage to input form.
+     * Converts Task from storage to input form.
      *
      * @param data specific storage data.
      * @return Task from the stored format.
@@ -96,7 +96,7 @@ public class Task {
     }
 
     /**
-     * This method returns the task description.
+     * Returns the task description.
      *
      * @return Task description.
      */

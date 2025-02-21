@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 /**
- * Controller for the main GUI.
+ * Controls main GUI.
  */
 public class MainWindow extends AnchorPane {
     @FXML
@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
 
     private Blob blob;
 
-    private boolean newEntry = true;
+    private boolean isNewEntry = true;
 
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/box.png"));
     private final Image blobImage = new Image(this.getClass().getResourceAsStream("/images/blob.png"));
@@ -42,11 +42,11 @@ public class MainWindow extends AnchorPane {
     public void setBlob(Blob b) {
         blob = b;
 
-        if (newEntry) {
+        if (isNewEntry) {
             dialogContainer.getChildren().add(
                     DialogBox.getBlobDialog(Ui.helloMessage(), blobImage)
             );
-            newEntry = false;
+            isNewEntry = false;
         }
     }
 

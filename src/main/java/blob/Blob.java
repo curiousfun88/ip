@@ -1,7 +1,7 @@
 package blob;
 
 /**
- * This class represents Blob, the friendly chatbot
+ * Represents Blob, the friendly chatbot
  */
 
 public class Blob {
